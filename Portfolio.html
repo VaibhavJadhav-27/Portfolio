@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaibhav Jadhav — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07111d;
+    --bg-strong: #0d1727;
+    --surface: rgba(18, 27, 39, 0.92);
+    --surface-strong: #162233;
+    --text: #edf4ff;
+    --text-strong: #ffffff;
+    --text-dim: #a9b6c8;
+    --accent: #7cc7ff;
+    --accent-strong: #4da3ff;
+    --accent-soft: rgba(124, 199, 255, 0.14);
+    --border: rgba(148, 163, 184, 0.18);
+    --shadow: 0 22px 48px rgba(2, 6, 23, 0.35);
+    --gradient: linear-gradient(135deg, rgba(124,199,255,0.18), rgba(167,139,250,0.12));
+    --maxw: 1080px;
+  }
+
+  body[data-theme="light"] {
+    --bg: #f4f7fb;
+    --bg-strong: #ebf1ff;
+    --surface: rgba(255, 255, 255, 0.84);
+    --surface-strong: #ffffff;
+    --text: #18212f;
+    --text-strong: #0f172a;
+    --text-dim: #536074;
+    --accent: #2f6fed;
+    --accent-strong: #1d4ed8;
+    --accent-soft: rgba(47, 111, 237, 0.1);
+    --border: rgba(15, 23, 42, 0.08);
+    --shadow: 0 20px 48px rgba(15, 23, 42, 0.12);
+    --gradient: linear-gradient(135deg, rgba(47,111,237,0.12), rgba(167,139,250,0.12));
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(124,199,255,0.08), transparent 26%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-strong) 100%);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+  ::selection { background: var(--accent-soft); color: var(--text-strong); }
+  a { color: inherit; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(7, 17, 29, 0.7);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  body[data-theme="light"] nav {
+    background: rgba(244, 247, 251, 0.7);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+    gap: 20px;
+  }
+  .nav-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .nav-mark__badge {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    color: var(--text-strong);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .nav-mark__text {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-strong);
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--text-strong); }
+
+  .theme-toggle {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-strong);
+    border-radius: 999px;
+    padding: 8px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font: inherit;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .theme-toggle:hover {
+    transform: translateY(-1px);
+    border-color: var(--accent);
+  }
+  .theme-toggle__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    font-size: 14px;
+  }
+  .theme-toggle__text {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr auto 240px;
+    gap: 36px;
+    align-items: start;
+  }
+  .hero-name {
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.96;
+  }
+  .cursor {
+    display: inline-block;
+    width: 4px;
+    height: 0.8em;
+    background: var(--accent);
+    margin-left: 6px;
+    vertical-align: -0.1em;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero-role {
+    margin-top: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--accent-strong);
+    letter-spacing: 0.03em;
+  }
+  .hero-desc {
+    margin-top: 22px;
+    max-width: 54ch;
+    color: var(--text-dim);
+    font-size: 1.05rem;
+  }
+  .hero-divider {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+  }
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding-top: 10px;
+  }
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+  }
+  .stat-num {
+    font-size: clamp(1.35rem, 2vw, 1.9rem);
+    font-weight: 700;
+    color: var(--text-strong);
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* SECTION LABELS */
+  h2.section-title {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+    color: var(--text-strong);
+  }
+  section {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* SKILLS */
+  .skill-group { margin-bottom: 28px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-cat {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-strong);
+    box-shadow: var(--shadow);
+  }
+  .tag-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  /* PROJECTS */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+  .project-thumb {
+    height: 180px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(237, 244, 255, 0.7);
+    background: var(--gradient);
+  }
+  body[data-theme="light"] .project-thumb {
+    color: rgba(24, 33, 47, 0.62);
+  }
+  .project-body { padding: 20px 20px 22px; }
+  .project-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-strong);
+  }
+  .project-desc {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .project-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+  .meta-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--accent-strong);
+    padding: 5px 9px;
+    border: 1px solid var(--accent-soft);
+    background: var(--accent-soft);
+    border-radius: 999px;
+  }
+
+  /* CONTACT */
+  .contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .contact-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .contact-links a {
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--text-strong);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 3px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .contact-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  footer { padding: 28px 0; }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-divider { display: none; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+    .hero-name { font-size: clamp(2.4rem, 13vw, 3.5rem); }
+    .cursor { height: 0.75em; }
+    .project-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 16px; }
+    nav .wrap { flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; }
+    .nav-right { width: 100%; justify-content: space-between; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { animation: none; }
+    .theme-toggle,
+    .project-card { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark" aria-label="Vaibhav Jadhav portfolio">
+      <span class="nav-mark__badge">VJ</span>
+      <span class="nav-mark__text">Vaibhav</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <span class="theme-toggle__icon" aria-hidden="true">☀️</span>
+        <span class="theme-toggle__text">Light</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="hero-name"><span id="typed"></span><span class="cursor"></span></h1>
+      <div class="hero-role">Software Engineer</div>
+      <p class="hero-desc">
+        I build backend systems and full-stack applications — from secure APIs
+        to the databases and infrastructure underneath them. Currently working
+        on distributed .NET systems, with a growing focus on mobile and
+        cross-platform tools.
+      </p>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">3+ yrs</div>
+        <div class="stat-label">Experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">Mumbai</div>
+        <div class="stat-label">Based in</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">SDE II</div>
+        <div class="stat-label">Role</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skill-group">
+      <div class="skill-cat">Languages</div>
+      <div class="tags">
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python icon">Python</span>
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C# icon">C#</span>
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-original.svg" alt="SQL icon">SQL</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-cat">Databases</div>
+      <div class="tags">
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB icon">MongoDB</span>
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle icon">Oracle</span>
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL icon">PostgreSQL</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-cat">Technologies</div>
+      <div class="tags">
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt=".NET icon">.NET</span>
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter icon">Flutter</span>
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js icon">Node.js</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-cat">Security</div>
+      <div class="tags">
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oauth/oauth-original.svg" alt="OAuth icon">OAuth</span>
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/shield-halved.svg" alt="Dapper icon">Dapper</span>
+        <span class="tag"><img class="tag-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/keycdn.svg" alt="PKCE icon">PKCE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-thumb" style="background:#26343B;">[ preview image ]</div>
+        <div class="project-body">
+          <div class="project-title">Splitify</div>
+          <p class="project-desc">
+            An expense-splitting app for groups — React frontend backed by a
+            .NET Core API, with CI/CD set up through Jenkins for automated
+            builds and deploys.
+          </p>
+          <div class="project-meta">
+            <span class="meta-chip">React</span>
+            <span class="meta-chip">.NET Core</span>
+            <span class="meta-chip">Jenkins</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb" style="background:#2B2438;">[ preview image ]</div>
+        <div class="project-body">
+          <div class="project-title">Endpoint Dependency Graph</div>
+          <p class="project-desc">
+            An internal visualization tool mapping dependencies across an
+            Angular UI, 13 .NET APIs, and 5 WCF services — showing the blast
+            radius of a change before it ships.
+          </p>
+          <div class="project-meta">
+            <span class="meta-chip">Angular</span>
+            <span class="meta-chip">.NET</span>
+            <span class="meta-chip">WCF</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb" style="background:#243830;">[ preview image ]</div>
+        <div class="project-body">
+          <div class="project-title">Project Three</div>
+          <p class="project-desc">
+            Placeholder for your next build — swap this card for a project
+            you're proud to walk an interviewer through.
+          </p>
+          <div class="project-meta">
+            <span class="meta-chip">Add stack</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb" style="background:#3A2E24;">[ preview image ]</div>
+        <div class="project-body">
+          <div class="project-title">Project Four</div>
+          <p class="project-desc">
+            Placeholder for your next build — swap this card for a project
+            you're proud to walk an interviewer through.
+          </p>
+          <div class="project-meta">
+            <span class="meta-chip">Add stack</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-row">
+      <p style="color:var(--text-dim); max-width:40ch; font-size:15px;">
+        Open to SDE II opportunities. Reach out directly or find me on
+        GitHub and LinkedIn.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:you@vaibhavjadhav.in">Email</a>
+        <a href="https://github.com/VaibhavJadhav-27" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/vaibhav-jadhav-4b70b7187" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Vaibhav Jadhav</span>
+    <span id="year"></span>
+  </div>
+</footer>
+
+<script>
+  const body = document.body;
+  const themeToggle = document.querySelector('.theme-toggle');
+  const themeLabel = document.querySelector('.theme-toggle__text');
+  const themeIcon = document.querySelector('.theme-toggle__icon');
+
+  function applyTheme(theme) {
+    const isLight = theme === 'light';
+    body.setAttribute('data-theme', theme);
+    themeLabel.textContent = isLight ? 'Dark' : 'Light';
+    themeIcon.textContent = isLight ? '🌙' : '☀️';
+    localStorage.setItem('portfolio-theme', theme);
+  }
+
+  const savedTheme = localStorage.getItem('portfolio-theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  applyTheme(savedTheme || (prefersLight ? 'light' : 'dark'));
+
+  themeToggle.addEventListener('click', () => {
+    const nextTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(nextTheme);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const name = "Vaibhav Jadhav";
+  const el = document.getElementById('typed');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    el.textContent = name;
+  } else {
+    let i = 0;
+    function type() {
+      if (i <= name.length) {
+        el.textContent = name.slice(0, i);
+        i++;
+        setTimeout(type, 55);
+      }
+    }
+    type();
+  }
+</script>
+
+</body>
+</html>
